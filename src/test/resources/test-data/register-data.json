@@ -1,0 +1,101 @@
+{
+  "valid": [
+    {
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_",
+      "company": "Ziad Tech",
+      "password": "SecureP@ss123"
+    }
+  ],
+  "invalid": [
+    {
+      "case": "all empty",
+      "firstName": "",
+      "lastName": "",
+      "emailPrefix": "",
+      "company": "",
+      "password": ""
+    },
+    {
+      "case": "missing first name",
+      "firstName": "",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_",
+      "company": "Ziad Tech",
+      "password": "SecureP@ss123"
+    },
+    {
+      "case": "invalid email - no @",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_",
+      "company": "Ziad Tech",
+      "password": "SecureP@ss123"
+    },
+    {
+      "case": "invalid email - only @",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_",
+      "company": "Ziad Tech",
+      "password": "SecureP@ss123"
+    },
+    {
+      "case": "password too short",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_short_",
+      "company": "Ziad Tech",
+      "password": "12"
+    },
+    {
+      "case": "password no special char",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_nospecial_",
+      "company": "Ziad Tech",
+      "password": "SecurePass123"
+    },
+    {
+      "case": "password no uppercase",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_noupper_",
+      "company": "Ziad Tech",
+      "password": "secure@123"
+    },
+    {
+      "case": "company empty",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_nocompany_",
+      "company": "",
+      "password": "SecureP@ss123"
+    },
+    {
+      "case": "spaces only",
+      "firstName": "   ",
+      "lastName": "   ",
+      "emailPrefix": "ZiadYehia_spaces_",
+      "company": "   ",
+      "password": "   "
+    },
+    {
+      "case": "weird chars in name",
+      "firstName": "Z!ad",
+      "lastName": "Ye#hia",
+      "emailPrefix": "ZiadYehia_weird_",
+      "company": "Ziad Tech",
+      "password": "SecureP@ss123"
+    },
+    {
+      "case": "very long email",
+      "firstName": "Ziad",
+      "lastName": "Yehia",
+      "emailPrefix": "ZiadYehia_VeryLongEmail_abcdefghijklmnopqrstuvwxyz1234567890",
+      "company": "Ziad Tech",
+      "password": "SecureP@ss123"
+    }
+  ]
+}
