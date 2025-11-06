@@ -1,7 +1,10 @@
 package com.nopcommerce.ui.user.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
+import com.nopcommerce.framework.utils.dataReader.PropertyReader;
 import org.openqa.selenium.By;
+
+import java.io.File;
 
 public class RegSuccessPage {
 
@@ -9,6 +12,7 @@ public class RegSuccessPage {
     private GUIDriver driver;
     //locators
     private final By continueButton = By.cssSelector("a[class=\"button-1 register-continue-button\"]");
+    private final By homeMainBanner = By.cssSelector("[id=\"main\"]");
 
     //constructor
     public RegSuccessPage(GUIDriver driver) {
@@ -23,7 +27,8 @@ public class RegSuccessPage {
 
     //validations
     public HomePage isHomePageAppear() {
-        driver.validation().assertPageUrl("baseUrlWeb");
+        driver.validation().assertPageUrl(PropertyReader.getProperty("baseUrlWeb")+ "/");
+        driver.verification().isElementVisible(homeMainBanner);
         return new HomePage(driver);
     }
 }

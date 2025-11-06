@@ -207,4 +207,20 @@ public class ElementActions {
         return this;
     }
 
+    public String getSelectedOptionFromDropdown(By selectedDropdown) {
+        return waitManager.fluentWait().until(d ->
+        {
+            try {
+                WebElement element = d.findElement(selectedDropdown);
+                scrollToElementJs(selectedDropdown);
+                Select select = new Select(element);
+                String selectedOption = select.getFirstSelectedOption().getText();
+                LogsManager.info("Got selected option '" + selectedOption + "' from dropdown: " + selectedDropdown);
+                return selectedOption;
+            } catch (Exception e) {
+                LogsManager.error("Failed to get selected option from dropdown:", selectedDropdown.toString(), e.getMessage());
+                return null;
+            }
+        });
+    }
 }
