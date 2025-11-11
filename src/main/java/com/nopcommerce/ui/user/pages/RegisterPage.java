@@ -2,6 +2,7 @@ package com.nopcommerce.ui.user.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 import com.nopcommerce.framework.utils.dataReader.PropertyReader;
+import com.nopcommerce.ui.user.common.components.HeaderComponent;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -11,6 +12,7 @@ public class RegisterPage {
     //variables
     private final GUIDriver driver;
     private final String endpoint = "/register";
+    private HeaderComponent header;
     // locators
     private final By registerText = By.cssSelector("h1");
     private final By maleGenderRadio = By.cssSelector("[id=\"gender-male\"]");
@@ -18,7 +20,7 @@ public class RegisterPage {
     private final By firstNameInput = By.cssSelector("[id=\"FirstName\"]");
     private final By lastNameInput = By.cssSelector("[id=\"LastName\"]");
     private final By emailInput = By.cssSelector("[id=\"Email\"]");
-    private final By companayInput = By.cssSelector("[id=\"Company\"]");
+    private final By companyInput = By.cssSelector("[id=\"Company\"]");
     private final By newsletterCheckbox = By.cssSelector("#NewsLetterSubscriptions_0__IsActive");
     private final By passwordInput = By.cssSelector("[id=\"Password\"]");
     private final By confirmPasswordInput = By.cssSelector("[id=\"ConfirmPassword\"]");
@@ -45,7 +47,7 @@ public class RegisterPage {
         driver.element().type(lastNameInput, lastName);
         driver.element().type(emailInput, email);
         driver.element().click(newsletterCheckbox);
-        driver.element().type(companayInput, company);
+        driver.element().type(companyInput, company);
         driver.element().type(passwordInput, password);
         driver.element().type(confirmPasswordInput, password);
         driver.element().click(registerButton);
@@ -69,5 +71,7 @@ public class RegisterPage {
         driver.verification().Equals(driver.element().getText(registrationExistErr),"The specified email already exists" ,"Registration exist error message is not displayed");
         return this;
     }
+
+
 
 }

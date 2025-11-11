@@ -1,6 +1,6 @@
 package com.nopcommerce.ui.user.pages;
 
-public class AddToCart {
+public class AddToCartPage {
     //variables
 
     //locators

@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
+import java.util.List;
 
 public class ElementActions {
     private final WebDriver driver;
@@ -162,6 +163,27 @@ public class ElementActions {
                         return element;
                     } catch (Exception e) {
                         LogsManager.error("Failed to find element:", by.toString(), e.getMessage());
+                        return null;
+                    }
+                });
+    }
+
+    public List<WebElement> findElements(By by) {
+        return waitManager.fluentWait()
+                .until(d -> {
+                    try {
+                        List<WebElement> elements = d.findElements(by);
+                        if (elements != null && !elements.isEmpty()) {
+                            LogsManager.info("Scrolling to first element of list:", by.toString());
+                            scrollToElementJs(by);
+                            LogsManager.info("Found " + elements.size() + " elements for: " + by.toString());
+                            return elements;
+                        } else {
+                            LogsManager.warn("No elements found for:", by.toString());
+                            return null;
+                        }
+                    } catch (Exception e) {
+                        LogsManager.error("Failed to find elements:", by.toString(), e.getMessage());
                         return null;
                     }
                 });

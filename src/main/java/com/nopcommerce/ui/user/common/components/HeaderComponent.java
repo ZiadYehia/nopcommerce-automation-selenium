@@ -1,6 +1,7 @@
 package com.nopcommerce.ui.user.common.components;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
+import com.nopcommerce.framework.utils.dataReader.PropertyReader;
 import org.openqa.selenium.By;
 
 public class HeaderComponent{
@@ -24,13 +25,19 @@ public class HeaderComponent{
     By myAccountLink = By.cssSelector("[class=\"ico-account\"]");
     By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
     By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
+    By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
 
     // constructor
-    private HeaderComponent(GUIDriver driver) {
+    public HeaderComponent(GUIDriver driver) {
         this.driver = driver;
     }
 
     // actions
+
+    public HeaderComponent navigate(){
+        driver.browser().navigateTo(PropertyReader.getProperty("baseUrlWeb"));
+        return this;
+    }
 
     public HeaderComponent changeCurrency(String currency) {
         driver.element().selectFromDropdown(currencyDropdown, currency);
@@ -132,6 +139,11 @@ public class HeaderComponent{
 
     public HeaderComponent isCurrencySelected(String expectedCurrency) {
         driver.verification().Equals(driver.element().getSelectedOptionFromDropdown(currencyDropdown), expectedCurrency, "Selected currency is not as expected");
+        return this;
+    }
+
+    public HeaderComponent isNotificationVisible(){
+        driver.verification().isElementVisible(notificationMsg);
         return this;
     }
 
