@@ -21,7 +21,7 @@ public class RegisterTest extends BaseTest {
 
 
     //Test cases
-    @Test(groups = {"registration","smoke", "regression","positive"}, priority = 1)
+    @Test(groups = {"registration", "smoke", "regression", "positive"}, priority = 1)
     @Story("User Registration with valid data")
     @Description("Validate that user can register with valid credentials")
     @Severity(SeverityLevel.BLOCKER)
@@ -42,7 +42,7 @@ public class RegisterTest extends BaseTest {
         loginData.setJsonData("valid[0].password", testData.getJsonData("valid[0].password"));
     }
 
-    @Test(groups = {"registration","regression","negative"}, dependsOnMethods = {"validUserRegistration_1"})
+    @Test(groups = {"registration", "regression", "negative"}, dependsOnMethods = {"validUserRegistration_1"})
     @Story("User Registration with existing email")
     @Description("Validate that user can't register with already registered email")
     @Severity(SeverityLevel.CRITICAL)
@@ -61,12 +61,12 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with empty fields")
     @Description("Validate that User can't register while leaving all fields empty")
     @Severity(SeverityLevel.NORMAL)
 
-    public void invalidUserRegistration_Empty(){
+    public void invalidUserRegistration_Empty() {
         new RegisterPage(driver)
                 .navigate()
                 .register(testData.getJsonData("invalid[0].firstName"),
@@ -77,7 +77,7 @@ public class RegisterTest extends BaseTest {
                 .isRegistrationNotCompleted();
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with missing first name")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with a missing first name")
@@ -95,7 +95,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with invalid email format")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with invalid email formate (no @)")
@@ -113,7 +113,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with invalid email format")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with invalid email formate (no domain)")
@@ -131,7 +131,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with short password")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with too short password")
@@ -149,7 +149,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with no special char in password")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with no special char in password")
@@ -167,7 +167,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with no uppercase password")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with no uppercase password")
@@ -185,7 +185,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with no company")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with no company")
@@ -203,7 +203,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with spaces only")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with spaces only")
@@ -221,7 +221,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with special char in names")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with special char in names")
@@ -239,7 +239,7 @@ public class RegisterTest extends BaseTest {
 
     }
 
-    @Test(groups = {"registration","regression","negative"})
+    @Test(groups = {"registration", "regression", "negative"})
     @Story("User Registration with long email")
     @Severity(SeverityLevel.NORMAL)
     @Description("Validate that User can't Register with long email")
@@ -256,7 +256,6 @@ public class RegisterTest extends BaseTest {
                 .isRegistrationNotCompleted();
 
     }
-
 
 
     //Configurations

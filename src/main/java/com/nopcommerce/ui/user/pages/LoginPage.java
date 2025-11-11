@@ -1,14 +1,14 @@
 package com.nopcommerce.ui.user.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
-import com.nopcommerce.framework.utils.actions.ElementActions;
+import com.nopcommerce.framework.utils.dataReader.PropertyReader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 public class LoginPage {
     //variables
     private final GUIDriver driver;
+    private final String endpoint = "/login";
     //locators
     private final By emailInput = By.cssSelector("[id=\"Email\"]");
     private final By passwordInput = By.cssSelector("[id=\"Password\"]");
@@ -23,6 +23,14 @@ public class LoginPage {
     }
 
     //actions
+
+    @Step("Navigation to Login Page")
+    public LoginPage navigate() {
+        driver.browser().navigateTo(PropertyReader.getProperty("baseUrlWeb") + endpoint);
+        return this;
+    }
+
+    @Step("User Entering data in login input fields")
     public LoginPage login(String email, String password) {
         driver.element().type(emailInput, email);
         driver.element().type(passwordInput, password);
@@ -43,12 +51,12 @@ public class LoginPage {
 
     //validations
     public HomePage isSuccessfulLogin() {
-        driver.verification().Equals(driver.element().getCurrentUrl(), "baseUrlWeb", "This is not HomePage URL after login");
+        driver.verification().Equals(driver.element().getCurrentUrl(), PropertyReader.getProperty("baseUrlWeb")+"/", "This is not HomePage URL after login");
         return new HomePage(driver);
     }
 
-    public LoginPage isNotSuccessfulLogin(String expectedLoginUrl) {
-        driver.verification().Equals(driver.element().getCurrentUrl(), "baseUrlWeb", "This is not LoginPage URL after login failure");
+    public LoginPage isNotSuccessfulLogin() {
+        driver.verification().Equals(driver.element().getCurrentUrl(), driver.element().getCurrentUrl(), "This is not LoginPage URL after login failure");
         return new LoginPage(driver);
     }
 

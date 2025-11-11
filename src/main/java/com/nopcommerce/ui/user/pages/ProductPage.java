@@ -6,13 +6,13 @@ import com.nopcommerce.ui.user.BasePage;
 public class ProductPage extends BasePage {
 
     // variables
-    private String endPoint;
+    private String productUrl;
     // locators
 
     // constructor
     public ProductPage(GUIDriver driver, String product){
         super(driver);
-        endPoint = product;
+        productUrl = product;
     }
 
     // actions

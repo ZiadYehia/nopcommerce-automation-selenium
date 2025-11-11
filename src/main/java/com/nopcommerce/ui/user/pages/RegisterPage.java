@@ -2,6 +2,7 @@ package com.nopcommerce.ui.user.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 import com.nopcommerce.framework.utils.dataReader.PropertyReader;
+import com.nopcommerce.framework.utils.logs.LogsManager;
 import com.nopcommerce.ui.user.common.components.HeaderComponent;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -14,9 +15,9 @@ public class RegisterPage {
     private final String endpoint = "/register";
     private HeaderComponent header;
     // locators
-    private final By registerText = By.cssSelector("h1");
+    private final By registerText = By.cssSelector(".page-title h1");
+    private final By femaleGenderRadio = By.cssSelector("#gender-female");
     private final By maleGenderRadio = By.cssSelector("[id=\"gender-male\"]");
-    private final By femaleGenderRadio = By.cssSelector("[id=\"gender-male\"]");
     private final By firstNameInput = By.cssSelector("[id=\"FirstName\"]");
     private final By lastNameInput = By.cssSelector("[id=\"LastName\"]");
     private final By emailInput = By.cssSelector("[id=\"Email\"]");

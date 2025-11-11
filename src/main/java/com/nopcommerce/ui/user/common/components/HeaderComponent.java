@@ -12,20 +12,20 @@ public class HeaderComponent{
     private String optionName;
 
     // locators
-    By currencyDropdown = By.cssSelector("[id=\"customerCurrency\"]");
-    By storeLogo = By.cssSelector("[class=\"header-logo\"] img");
-    By loginLink = By.cssSelector("[class=\"ico-login\"]");
-    By logoutLink = By.cssSelector("[class=\"ico-logout\"]");
-    By registerLink = By.cssSelector("[class=\"ico-register\"]");
-    By dynamicMenuLink = By.cssSelector("//div[@class=\"menu\"] /div["+category+"] //a[.=\""+optionName+"\"]");
-    By searchInput = By.cssSelector("[id=\"small-searchterms\"]");
-    By searchButton = By.cssSelector("[type=\"submit\"]");
-    By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
-    By shoppingCartQty = By.cssSelector("[class=\"cart-qty\"]");
-    By myAccountLink = By.cssSelector("[class=\"ico-account\"]");
-    By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
-    By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
-    By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
+    //private By currencyDropdown = By.cssSelector("[id=\"customerCurrency\"]");
+    private By storeLogo = By.cssSelector("[class=\"header-logo\"] img");
+    private By loginLink = By.cssSelector("[class=\"ico-login\"]");
+    private By logoutLink = By.cssSelector("[class=\"ico-logout\"]");
+    private By registerLink = By.cssSelector("[class=\"ico-register\"]");
+    private By dynamicMenuLink = By.cssSelector("//div[@class=\"menu\"] /div["+category+"] //a[.=\""+optionName+"\"]");
+    private By searchInput = By.cssSelector("[id=\"small-searchterms\"]");
+    private By searchButton = By.cssSelector("[type=\"submit\"]");
+    private By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
+    private By shoppingCartQty = By.cssSelector("[class=\"cart-qty\"]");
+    private By myAccountLink = By.cssSelector("[class=\"ico-account\"]");
+    private By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
+    private By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
+    private By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
 
     // constructor
     public HeaderComponent(GUIDriver driver) {
@@ -39,10 +39,10 @@ public class HeaderComponent{
         return this;
     }
 
-    public HeaderComponent changeCurrency(String currency) {
-        driver.element().selectFromDropdown(currencyDropdown, currency);
-        return this;
-    }
+//    public HeaderComponent changeCurrency(String currency) {
+//        driver.element().selectFromDropdown(currencyDropdown, currency);
+//        return this;
+//    }
 
     public HeaderComponent clickStoreLogo() {
         driver.element().click(storeLogo);
@@ -64,9 +64,9 @@ public class HeaderComponent{
         return this;
     }
 
-    public HeaderComponent clickDynamicMenuLink(String category, String optionNameName) {
+    public HeaderComponent clickDynamicMenuLink(String category, String optionName) {
         this.category = category;
-        this.optionName = optionNameName;
+        this.optionName = optionName;
         driver.element().click(dynamicMenuLink);
         return this;
     }
@@ -107,7 +107,7 @@ public class HeaderComponent{
 
 
     public HeaderComponent isHeaderComponentVisible() {
-        driver.verification().isElementVisible(currencyDropdown);
+//        driver.verification().isElementVisible(currencyDropdown);
         driver.verification().isElementVisible(storeLogo);
         driver.verification().isElementVisible(registerLink);
         driver.verification().isElementVisible(searchInput);
@@ -137,10 +137,10 @@ public class HeaderComponent{
         return this;
     }
 
-    public HeaderComponent isCurrencySelected(String expectedCurrency) {
-        driver.verification().Equals(driver.element().getSelectedOptionFromDropdown(currencyDropdown), expectedCurrency, "Selected currency is not as expected");
-        return this;
-    }
+//    public HeaderComponent isCurrencySelected(String expectedCurrency) {
+//        driver.verification().Equals(driver.element().getSelectedOptionFromDropdown(currencyDropdown), expectedCurrency, "Selected currency is not as expected");
+//        return this;
+//    }
 
     public HeaderComponent isNotificationVisible(){
         driver.verification().isElementVisible(notificationMsg);
