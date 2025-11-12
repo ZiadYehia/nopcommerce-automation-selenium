@@ -9,10 +9,6 @@ public class BaseTest implements WebDriverProvider {
     protected GUIDriver driver;
     protected JsonReader testData;
 
-
-
-
-
     @Override
     public WebDriver getWebDriver() {
         return driver.get();

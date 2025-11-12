@@ -120,7 +120,7 @@ public class HomePage extends BasePage {
     public BasePage clickAddToCart() {
         String predictedEndpoint = driver.element().getDomProperty(titleByName(), "href");
         driver.element().click(addToCartByName());
-        if (driver.verification().isElementVisibleBoolean(header.cartSuccess)) {
+        if (driver.verification().isElementVisibleBoolean(header.getCartNotification())) {
             cartQty++;
             return this;
         } else {
@@ -130,11 +130,9 @@ public class HomePage extends BasePage {
 
     @Step("Click on AddToWishList Button")
     public BasePage clickWishlist() {
-        String previousUrl = driver.browser().getCurrentUrl();
         String predictedEndpoint = driver.element().getDomProperty(titleByName(), "href");
         driver.element().click(wishlistByName());
-
-        if (driver.verification().isElementVisibleBoolean(header.notificationMsg)) {
+        if (driver.verification().isElementVisibleBoolean(header.getWishlistNotification())) {
             wishListQty++;
             return this;
         } else {
@@ -308,6 +306,19 @@ public class HomePage extends BasePage {
             header.isShoppingCartQtyCorrect(Integer.toString(cartQty));
         } else {
             header.isShoppingCartQtyCorrect(Integer.toString(cartQty));
+        }
+        return result;
+    }
+
+    @Step("Validate that Add To Wishlist functionality works correctly")
+    public BasePage isAddToWishlistWorking() {
+        verifyAllHomePageElementsLoaded();
+        BasePage result = clickWishlist();
+        if (result instanceof HomePage) {
+            header.isNotificationVisible();
+            header.isWishlistQtyCorrect(Integer.toString(wishListQty));
+        } else {
+            header.isWishlistQtyCorrect(Integer.toString(wishListQty));
         }
         return result;
     }

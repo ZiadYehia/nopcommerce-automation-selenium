@@ -22,13 +22,16 @@ public class HeaderComponent{
     protected By searchButton = By.cssSelector("[type=\"submit\"]");
     protected By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
     protected By shoppingCartQty = By.cssSelector("[class=\"cart-qty\"]");
-    public By cartSuccess = By.xpath(
+    protected By cartSuccess = By.xpath(
             "//*[contains(@class,'bar-notification') and contains(@class,'success')]//*[contains(.,'added to your shopping cart')]"
+    );
+    protected By wishlistSuccess = By.xpath(
+            "//p[@class='content']//a[.='wishlist']"
     );
     protected By myAccountLink = By.cssSelector("[class=\"ico-account\"]");
     protected By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
     protected By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
-    public By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
+    protected By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
 
     // constructor
     public HeaderComponent(GUIDriver driver) {
@@ -93,6 +96,16 @@ public class HeaderComponent{
     public HeaderComponent clickWishlistLink() {
         driver.element().click(wishlistLink);
         return this;
+    }
+
+    public By getCartNotification() {
+        return cartSuccess;
+    }
+    public By getWishlistNotification() {
+        return wishlistSuccess;
+    }
+    public By getNotification() {
+        return notificationMsg;
     }
 
     public String getShoppingCartQty() {

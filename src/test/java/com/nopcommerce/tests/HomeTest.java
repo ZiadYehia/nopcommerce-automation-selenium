@@ -19,7 +19,6 @@ public class HomeTest extends BaseTest {
     //variables
     String timeStamp = TimeManager.getSimpleTimestamp();
 
-
     //Test cases
     @Test(groups = {"homepage", "smoke", "regression", "positive"})
     @Story("User flow in HomePage")
@@ -75,6 +74,17 @@ public class HomeTest extends BaseTest {
         new HomePage(driver)
                 .navigate()
                 .isAddToCartWorking();
+
+    }
+
+    @Test(groups = {"homepage", "smoke", "regression", "positive"})
+    @Story("User flow in HomePage")
+    @Description("Validate that User can add product to wishlist")
+    @Severity(SeverityLevel.BLOCKER)
+    public void addToWishlist() {
+        new HomePage(driver)
+                .navigate()
+                .isAddToWishlistWorking();
 
     }
 
