@@ -40,6 +40,7 @@ public class HomeTest extends BaseTest {
                 .navigate()
                 .isNavigatedToProductPage_Image();
     }
+
     @Test(groups = {"homepage", "smoke", "regression", "positive"})
     @Story("User flow in HomePage")
     @Description("Validate that User is navigated to product page upon clicking on title")
@@ -66,8 +67,18 @@ public class HomeTest extends BaseTest {
 
     }
 
-    //Configurations
+    @Test(groups = {"homepage", "smoke", "regression", "positive"})
+    @Story("User flow in HomePage")
+    @Description("Validate that User can add product to cart")
+    @Severity(SeverityLevel.BLOCKER)
+    public void addToCart() {
+        new HomePage(driver)
+                .navigate()
+                .isAddToCartWorking();
 
+    }
+
+    //Configurations
     @BeforeClass(alwaysRun = true)
     protected void preCondition() {
         testData = new JsonReader("login-data");

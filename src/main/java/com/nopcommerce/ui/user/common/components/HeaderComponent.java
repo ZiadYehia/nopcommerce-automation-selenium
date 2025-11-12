@@ -12,20 +12,23 @@ public class HeaderComponent{
     private String optionName;
 
     // locators
-    //private By currencyDropdown = By.cssSelector("[id=\"customerCurrency\"]");
-    private By storeLogo = By.cssSelector("[class=\"header-logo\"] img");
-    private By loginLink = By.cssSelector("[class=\"ico-login\"]");
-    private By logoutLink = By.cssSelector("[class=\"ico-logout\"]");
-    private By registerLink = By.cssSelector("[class=\"ico-register\"]");
-    private By dynamicMenuLink = By.cssSelector("//div[@class=\"menu\"] /div["+category+"] //a[.=\""+optionName+"\"]");
-    private By searchInput = By.cssSelector("[id=\"small-searchterms\"]");
-    private By searchButton = By.cssSelector("[type=\"submit\"]");
-    private By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
-    private By shoppingCartQty = By.cssSelector("[class=\"cart-qty\"]");
-    private By myAccountLink = By.cssSelector("[class=\"ico-account\"]");
-    private By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
-    private By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
-    private By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
+    //protected By currencyDropdown = By.cssSelector("[id=\"customerCurrency\"]");
+    protected By storeLogo = By.cssSelector("[class=\"header-logo\"] img");
+    protected By loginLink = By.cssSelector("[class=\"ico-login\"]");
+    protected By logoutLink = By.cssSelector("[class=\"ico-logout\"]");
+    protected By registerLink = By.cssSelector("[class=\"ico-register\"]");
+    protected By dynamicMenuLink = By.cssSelector("//div[@class=\"menu\"] /div["+category+"] //a[.=\""+optionName+"\"]");
+    protected By searchInput = By.cssSelector("[id=\"small-searchterms\"]");
+    protected By searchButton = By.cssSelector("[type=\"submit\"]");
+    protected By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
+    protected By shoppingCartQty = By.cssSelector("[class=\"cart-qty\"]");
+    public By cartSuccess = By.xpath(
+            "//*[contains(@class,'bar-notification') and contains(@class,'success')]//*[contains(.,'added to your shopping cart')]"
+    );
+    protected By myAccountLink = By.cssSelector("[class=\"ico-account\"]");
+    protected By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
+    protected By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
+    public By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
 
     // constructor
     public HeaderComponent(GUIDriver driver) {
@@ -128,12 +131,12 @@ public class HeaderComponent{
     }
 
     public HeaderComponent isShoppingCartQtyCorrect(String expectedQty) {
-        driver.verification().Equals(driver.element().getText(shoppingCartQty), expectedQty, "Shopping cart quantity is not as expected");
+        driver.verification().Equals(getShoppingCartQty(), "("+expectedQty+")", "Shopping cart quantity is not "+expectedQty);
         return this;
     }
 
     public HeaderComponent isWishlistQtyCorrect(String expectedQty) {
-        driver.verification().Equals(driver.element().getText(wishlistQty), expectedQty, "Wishlist quantity is not as expected");
+        driver.verification().Equals(getWishlistQty(), "("+expectedQty+")", "Wishlist quantity is not "+expectedQty);
         return this;
     }
 

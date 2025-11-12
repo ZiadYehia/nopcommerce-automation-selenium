@@ -118,10 +118,9 @@ public class HomePage extends BasePage {
 
     @Step("Click on AddToCart Button")
     public BasePage clickAddToCart() {
-        String previousUrl = driver.browser().getCurrentUrl();
         String predictedEndpoint = driver.element().getDomProperty(titleByName(), "href");
         driver.element().click(addToCartByName());
-        if (previousUrl.equalsIgnoreCase(driver.browser().getCurrentUrl())) {
+        if (driver.verification().isElementVisibleBoolean(header.cartSuccess)) {
             cartQty++;
             return this;
         } else {
@@ -135,7 +134,7 @@ public class HomePage extends BasePage {
         String predictedEndpoint = driver.element().getDomProperty(titleByName(), "href");
         driver.element().click(wishlistByName());
 
-        if (previousUrl.equalsIgnoreCase(driver.browser().getCurrentUrl())) {
+        if (driver.verification().isElementVisibleBoolean(header.notificationMsg)) {
             wishListQty++;
             return this;
         } else {
@@ -303,15 +302,14 @@ public class HomePage extends BasePage {
     @Step("Validate that Add To Cart functionality works correctly")
     public BasePage isAddToCartWorking() {
         verifyAllHomePageElementsLoaded();
-        String previousUrl = driver.browser().getCurrentUrl();
-        clickAddToCart();
-        if (previousUrl.equalsIgnoreCase(driver.browser().getCurrentUrl())) {
+        BasePage result = clickAddToCart();
+        if (result instanceof HomePage) {
             header.isNotificationVisible();
             header.isShoppingCartQtyCorrect(Integer.toString(cartQty));
-            return this;
         } else {
-            return new ProductPage(driver, driver.element().getDomProperty(titleByName(), "href"));
+            header.isShoppingCartQtyCorrect(Integer.toString(cartQty));
         }
+        return result;
     }
 
     @Step("Validate that Poll section is visible")

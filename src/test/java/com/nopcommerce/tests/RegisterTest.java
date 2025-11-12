@@ -25,7 +25,6 @@ public class RegisterTest extends BaseTest {
     @Story("User Registration with valid data")
     @Description("Validate that user can register with valid credentials")
     @Severity(SeverityLevel.BLOCKER)
-
     public void validUserRegistration_1() {
 
         new RegisterPage(driver)
@@ -65,7 +64,6 @@ public class RegisterTest extends BaseTest {
     @Story("User Registration with empty fields")
     @Description("Validate that User can't register while leaving all fields empty")
     @Severity(SeverityLevel.NORMAL)
-
     public void invalidUserRegistration_Empty() {
         new RegisterPage(driver)
                 .navigate()

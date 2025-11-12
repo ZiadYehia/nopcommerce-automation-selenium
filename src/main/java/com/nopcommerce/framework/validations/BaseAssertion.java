@@ -27,6 +27,16 @@ public abstract class BaseAssertion {
 
     protected abstract void assertEquals(String actual, String expected, String message);
 
+    public boolean EqualsBoolean(String actual, String expected, String message) {
+        try {
+            assertEquals(actual, expected, message);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
     public BaseAssertion Equals(String actual, String expected, String message) {
         assertEquals(actual, expected, message);
         return this;
@@ -44,6 +54,21 @@ public abstract class BaseAssertion {
         });
         assertTrue(flag, "Element is not visible: " + locator);
     }
+
+    public boolean isElementVisibleBoolean(By locator) {
+        try {
+            return waitManager.fluentWait().until(driver1 -> {
+                try {
+                    return driver1.findElement(locator).isDisplayed();
+                } catch (Exception e) {
+                    return false;
+                }
+            });
+        } catch (org.openqa.selenium.TimeoutException | AssertionError e) {
+            return false;
+        }
+    }
+
 
     // verify page url
     public void assertPageUrl(String expectedUrl) {

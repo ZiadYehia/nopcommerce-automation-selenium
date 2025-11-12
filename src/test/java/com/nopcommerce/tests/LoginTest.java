@@ -29,6 +29,7 @@ public class LoginTest extends BaseTest {
                         testData.getJsonData("valid[0].password"))
                 .isSuccessfulLogin();
     }
+
     @Test(groups = {"login", "smoke", "regression", "negative"}, priority = 1)
     @Story("User login with empty data")
     @Description("Validate that user can't login with empty inputs")
