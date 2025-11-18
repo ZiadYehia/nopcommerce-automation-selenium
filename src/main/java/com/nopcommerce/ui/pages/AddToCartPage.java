@@ -1,4 +1,4 @@
-package com.nopcommerce.ui.user.pages;
+package com.nopcommerce.ui.pages;
 
 public class AddToCartPage {
     //variables

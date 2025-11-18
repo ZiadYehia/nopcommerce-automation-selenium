@@ -1,4 +1,4 @@
-package com.nopcommerce.ui.user.pages;
+package com.nopcommerce.ui.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 import com.nopcommerce.framework.utils.dataReader.PropertyReader;

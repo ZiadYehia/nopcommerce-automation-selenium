@@ -1,4 +1,4 @@
-package com.nopcommerce.ui.user;
+package com.nopcommerce.ui;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 

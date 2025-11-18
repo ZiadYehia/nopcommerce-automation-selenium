@@ -3,8 +3,8 @@ package com.nopcommerce.framework.validations;
 import com.nopcommerce.framework.utils.file.FileManager;
 import com.nopcommerce.framework.utils.WaitManager;
 import com.nopcommerce.framework.utils.actions.ElementActions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.nopcommerce.framework.utils.logs.LogsManager;
+import org.openqa.selenium.*;
 
 public abstract class BaseAssertion {
     protected WebDriver driver;
@@ -47,8 +47,10 @@ public abstract class BaseAssertion {
         {
             try {
                 driver1.findElement(locator).isDisplayed();
+                LogsManager.info("Searching for Element: " + locator);
                 return true;
             } catch (Exception e) {
+                LogsManager.error("Element is not visible: " + locator);
                 return false;
             }
         });
@@ -57,17 +59,37 @@ public abstract class BaseAssertion {
 
     public boolean isElementVisibleBoolean(By locator) {
         try {
-            return waitManager.fluentWait().until(driver1 -> {
+            boolean flag =  waitManager.fluentWait().until(driver1 -> {
                 try {
+                    LogsManager.info("Searching for Element: " + locator);
                     return driver1.findElement(locator).isDisplayed();
                 } catch (Exception e) {
+                    LogsManager.error("Element is not visible: " + locator);
                     return false;
                 }
             });
+            LogsManager.warn("Element visibility for " + locator + ": " + flag);
+            return flag;
         } catch (org.openqa.selenium.TimeoutException | AssertionError e) {
             return false;
         }
     }
+
+//    public boolean isElementVisibleMai(By locator) {
+//        boolean flag = false;
+//        LogsManager.info("flag main: " + flag);
+//        try {
+//            flag = waitManager.fluentWait().until(driver1 -> {
+//                LogsManager.info("flag try: "+locator);
+//                return driver1.findElement(locator).isDisplayed();
+//            });
+//            LogsManager.info("flag before: " + flag);
+//        } catch (Exception e) {
+//            LogsManager.info("flag catch: " + flag);
+//        }
+//        LogsManager.info("flag after: " + flag);
+//        return flag;
+//    }
 
 
     // verify page url

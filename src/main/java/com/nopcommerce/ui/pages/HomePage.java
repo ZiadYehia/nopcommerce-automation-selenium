@@ -1,10 +1,10 @@
-package com.nopcommerce.ui.user.pages;
+package com.nopcommerce.ui.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 import com.nopcommerce.framework.utils.dataReader.PropertyReader;
-import com.nopcommerce.ui.user.BasePage;
-import com.nopcommerce.ui.user.common.components.FooterComponent;
-import com.nopcommerce.ui.user.common.components.HeaderComponent;
+import com.nopcommerce.ui.BasePage;
+import com.nopcommerce.ui.components.FooterComponent;
+import com.nopcommerce.ui.components.HeaderComponent;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 

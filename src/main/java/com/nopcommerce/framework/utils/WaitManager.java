@@ -22,15 +22,14 @@ public class WaitManager {
         
     }
 
-
     private ArrayList<Class<? extends Exception>> getExceptions() {
         ArrayList<Class<? extends Exception>> exceptions = new ArrayList<>();
         exceptions.add(NoSuchElementException.class);
         exceptions.add(StaleElementReferenceException.class);
+        exceptions.add(TimeoutException.class);
         exceptions.add(ElementNotInteractableException.class);
         exceptions.add(ElementClickInterceptedException.class);
         return exceptions;
     }
-
 
 }

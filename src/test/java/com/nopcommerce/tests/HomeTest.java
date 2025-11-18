@@ -1,11 +1,11 @@
 package com.nopcommerce.tests;
 
-import com.nopcommerce.defaultconditions.BaseTest;
+import com.nopcommerce.BaseTest;
 import com.nopcommerce.framework.drivers.GUIDriver;
 import com.nopcommerce.framework.utils.TimeManager;
 import com.nopcommerce.framework.utils.dataReader.JsonReader;
-import com.nopcommerce.ui.user.pages.HomePage;
-import com.nopcommerce.ui.user.pages.LoginPage;
+import com.nopcommerce.ui.pages.HomePage;
+import com.nopcommerce.ui.pages.LoginPage;
 import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;

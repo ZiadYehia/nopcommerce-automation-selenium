@@ -1,7 +1,7 @@
-package com.nopcommerce.ui.user.pages;
+package com.nopcommerce.ui.pages;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
-import com.nopcommerce.ui.user.BasePage;
+import com.nopcommerce.ui.BasePage;
 
 public class ProductPage extends BasePage {
 

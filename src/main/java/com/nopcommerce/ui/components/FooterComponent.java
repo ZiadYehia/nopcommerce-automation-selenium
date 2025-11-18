@@ -1,4 +1,4 @@
-package com.nopcommerce.ui.user.common.components;
+package com.nopcommerce.ui.components;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 import org.openqa.selenium.By;
