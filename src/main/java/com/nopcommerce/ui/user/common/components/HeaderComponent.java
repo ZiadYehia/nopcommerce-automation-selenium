@@ -2,13 +2,40 @@ package com.nopcommerce.ui.user.common.components;
 
 import com.nopcommerce.framework.drivers.GUIDriver;
 import com.nopcommerce.framework.utils.dataReader.PropertyReader;
+import com.nopcommerce.ui.user.pages.CategoryPage;
 import org.openqa.selenium.By;
+
+import java.util.List;
 
 public class HeaderComponent{
 
     // variables
     private final GUIDriver driver;
+    /**
+     * "Computers",
+     * "Electronics",
+     * "Apparel",
+     * "Digital downloads",
+     * "Books",
+     * "Jewelry",
+     * "Gift Cards"
+     */
     private String category;
+    /**
+     * "Desktops",
+     * "Notebooks",
+     * "Software",
+     * "Camera & photo",
+     * "Cell phones",
+     * "Others",
+     * "Shoes",
+     * "Clothing",
+     * "Accessories",
+     * "Digital downloads",
+     * "Books",
+     * "Jewelry",
+     * "Gift Cards"
+     */
     private String optionName;
 
     // locators
@@ -17,7 +44,6 @@ public class HeaderComponent{
     protected By loginLink = By.cssSelector("[class=\"ico-login\"]");
     protected By logoutLink = By.cssSelector("[class=\"ico-logout\"]");
     protected By registerLink = By.cssSelector("[class=\"ico-register\"]");
-    protected By dynamicMenuLink = By.cssSelector("//div[@class=\"menu\"] /div["+category+"] //a[.=\""+optionName+"\"]");
     protected By searchInput = By.cssSelector("[id=\"small-searchterms\"]");
     protected By searchButton = By.cssSelector("[type=\"submit\"]");
     protected By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
@@ -32,6 +58,21 @@ public class HeaderComponent{
     protected By wishlistLink = By.cssSelector("[class=\"ico-wishlist\"]");
     protected By wishlistQty = By.cssSelector("[class=\"wishlist-qty\"]");
     protected By notificationMsg = By.cssSelector("[id=\"bar-notification\"]");
+
+    // dynamic locator
+    By dynamicCategoryMenu() {
+        return By.xpath(
+                "//div[@class='menu__item menu-dropdown']" +
+                        "[.//a[@class='menu__link' and normalize-space()='" + this.category + "']]");
+    }
+    By dynamicOptionMenu() {
+        return By.xpath(
+                "//div[@class='menu__item menu-dropdown']" +
+                        "[.//a[@class='menu__link' and normalize-space()='" + this.category + "']]" +
+                        "//div[@class='menu__list-view']//a[@class='menu__link' and normalize-space()='" + this.optionName + "']"
+        );
+    }
+
 
     // constructor
     public HeaderComponent(GUIDriver driver) {
@@ -70,11 +111,11 @@ public class HeaderComponent{
         return this;
     }
 
-    public HeaderComponent clickDynamicMenuLink(String category, String optionName) {
+    public CategoryPage clickDynamicMenuLink(String category, String optionName) {
         this.category = category;
         this.optionName = optionName;
-        driver.element().click(dynamicMenuLink);
-        return this;
+        driver.element().selectFromDropdown_Normal(dynamicCategoryMenu(), dynamicOptionMenu());
+        return new CategoryPage(driver, category);
     }
 
     public HeaderComponent searchProduct(String productName) {
@@ -160,6 +201,16 @@ public class HeaderComponent{
 
     public HeaderComponent isNotificationVisible(){
         driver.verification().isElementVisible(notificationMsg);
+        return this;
+    }
+
+    public HeaderComponent isNavigatedToCategoryPage(String category){
+        driver.verification().assertPageUrl(PropertyReader.getProperty("baseUrlWeb")+"/"+category.toLowerCase().replace(" & ","-").replace(" ","-"));
+        return this;
+    }
+
+    public HeaderComponent isNavigatedToOptionPage(String optionName){
+        driver.verification().assertPageUrl(PropertyReader.getProperty("baseUrlWeb")+"/"+optionName.toLowerCase().replace(" & ","-").replace(" ","-"));
         return this;
     }
 

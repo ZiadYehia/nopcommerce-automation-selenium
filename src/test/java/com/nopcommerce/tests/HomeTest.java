@@ -17,7 +17,6 @@ import org.testng.annotations.Test;
 @Owner("Ziad Yehia")
 public class HomeTest extends BaseTest {
     //variables
-    String timeStamp = TimeManager.getSimpleTimestamp();
 
     //Test cases
     @Test(groups = {"homepage", "smoke", "regression", "positive"})
@@ -86,6 +85,17 @@ public class HomeTest extends BaseTest {
                 .navigate()
                 .isAddToWishlistWorking();
 
+    }
+
+    @Test(groups = {"homepage", "smoke", "regression", "positive"})
+    @Story("User flow in HomePage")
+    @Description("Validate that User select Category from Menu")
+    @Severity(SeverityLevel.BLOCKER)
+    public void selectCategory() {
+        new HomePage(driver)
+                .navigate()
+                .clickCategoryFromHeader()
+                .isNavigatedToCategoryPageWithOption();
     }
 
     //Configurations

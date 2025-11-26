@@ -3,10 +3,10 @@ package com.nopcommerce.framework.utils.actions;
 import com.nopcommerce.framework.utils.WaitManager;
 import com.nopcommerce.framework.utils.logs.LogsManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
@@ -54,6 +54,24 @@ public class ElementActions {
                         return true;
                     } catch (Exception e) {
                         LogsManager.error("Failed to type in element:", by.toString(), e.getMessage());
+                        return false;
+                    }
+                });
+    }
+
+    public void clear(By by){
+        waitManager.fluentWait()
+                .until(d->{
+                    try{
+                        WebElement element = d.findElement(by);
+                        LogsManager.info("Scrolling to clear element:", by.toString());
+                        scrollToElementJs(by);
+                        LogsManager.info("Clearing text in element:", by.toString());
+                        element.clear();
+                        LogsManager.info("Cleared text in element:", by.toString());
+                        return true;
+                    }catch (Exception e) {
+                        LogsManager.error("Failed to clear element:", by.toString(), e.getMessage());
                         return false;
                     }
                 });
@@ -211,7 +229,7 @@ public class ElementActions {
     }
 
     //select from dropdown
-    public ElementActions selectFromDropdown(By locator, String value) {
+    public ElementActions selectFromDropdown_Select(By locator, String value) {
         waitManager.fluentWait().until(d ->
                 {
                     try {
@@ -229,7 +247,32 @@ public class ElementActions {
         return this;
     }
 
-    public String getSelectedOptionFromDropdown(By selectedDropdown) {
+    public ElementActions selectFromDropdown_Normal(By locator, By value) {
+        waitManager.fluentWait().until(d ->
+        {
+            try {
+                WebElement element = d.findElement(locator);
+                scrollToElementJs(locator);
+                new Actions(driver)
+                        .moveToElement(element)
+                        .perform();
+                WebElement option = d.findElement(value);
+                new Actions(driver)
+                        .scrollToElement(option)
+                        .click(option)
+                        .perform();
+                LogsManager.info("Selected option '" + value + "' from dropdown: " + locator);
+                return true;
+            } catch (Exception e) {
+                LogsManager.error("Failed to select value '" + value.toString() + "' from dropdown: " + locator.toString(), e.getMessage());
+                return false;
+            }
+
+        });
+        return this;
+    }
+
+    public String getSelectedOptionFromDropdown_Select(By selectedDropdown) {
         return waitManager.fluentWait().until(d ->
         {
             try {

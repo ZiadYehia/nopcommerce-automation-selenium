@@ -16,6 +16,8 @@ public class HomePage extends BasePage {
     private final GUIDriver driver;
     private HeaderComponent header;
     private FooterComponent footer;
+    private String category = "Electronics";
+    private String categoryOptionName = "Cell phones";
     /**
      * Featured products currently visible on home page:
      * 1. Build your own computer
@@ -114,6 +116,12 @@ public class HomePage extends BasePage {
         String predictedEndpoint = driver.element().getDomProperty(titleByName(), "href");
         driver.element().click(titleByName());
         return new ProductPage(driver, predictedEndpoint);
+    }
+
+    @Step("Click on Category from Header Menu")
+    public HomePage clickCategoryFromHeader(){
+        header.clickDynamicMenuLink(category, categoryOptionName);
+        return this;
     }
 
     @Step("Click on AddToCart Button")
@@ -342,5 +350,24 @@ public class HomePage extends BasePage {
         voteUp();
         isVoteResultTextVisible();
         return this;
+    }
+
+    @Step("Validate that Navigation to Category Page from Header Menu works correctly")
+    public HomePage isNavigatedToCategoryPage(){
+        header.isNavigatedToCategoryPage(category);
+        return this;
+    }
+
+    @Step("Validate that Navigation to CategoryOption Page from Header Menu works correctly")
+    public HomePage isNavigatedToCategoryOptionPage(){
+        header.isNavigatedToOptionPage(categoryOptionName);
+        return this;
+    }
+
+    @Step("Validate that Navigation to Category Page with Option from Header Menu works correctly")
+    public CategoryPage isNavigatedToCategoryPageWithOption(){
+//        isNavigatedToCategoryPage();
+        isNavigatedToCategoryOptionPage();
+        return new CategoryPage(driver, categoryOptionName);
     }
 }
