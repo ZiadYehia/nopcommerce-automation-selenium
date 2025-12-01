@@ -10,6 +10,7 @@ import org.testng.annotations.Listeners;
 public class BaseTest implements WebDriverProvider {
     protected GUIDriver driver;
     protected JsonReader testData;
+    protected String categoryOptionName = "/cell-phones";
 
     @Override
     public WebDriver getWebDriver() {

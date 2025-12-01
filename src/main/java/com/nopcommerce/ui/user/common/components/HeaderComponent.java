@@ -46,8 +46,10 @@ public class HeaderComponent{
     protected By registerLink = By.cssSelector("[class=\"ico-register\"]");
     protected By searchInput = By.cssSelector("[id=\"small-searchterms\"]");
     protected By searchButton = By.cssSelector("[type=\"submit\"]");
-    protected By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
+    public By shoppingCartLink = By.cssSelector("[class=\"ico-cart\"]");
     protected By shoppingCartQty = By.cssSelector("[class=\"cart-qty\"]");
+    protected By goToCartButton = By.cssSelector("[class*=\"cart-button\"]");
+    protected By closeNotificationButton = By.cssSelector("[title=\"Close\"]");
     protected By cartSuccess = By.xpath(
             "//*[contains(@class,'bar-notification') and contains(@class,'success')]//*[contains(.,'added to your shopping cart')]"
     );
@@ -96,6 +98,11 @@ public class HeaderComponent{
         return this;
     }
 
+    public HeaderComponent closeNotificationBar() {
+        driver.element().click(closeNotificationButton);
+        return this;
+    }
+
     public HeaderComponent clickLoginLink() {
         driver.element().click(loginLink);
         return this;
@@ -136,6 +143,12 @@ public class HeaderComponent{
 
     public HeaderComponent clickWishlistLink() {
         driver.element().click(wishlistLink);
+        return this;
+    }
+
+    public HeaderComponent clickGoToCartButton() {
+        driver.element().hover(shoppingCartLink);
+        driver.element().click(goToCartButton);
         return this;
     }
 

@@ -16,8 +16,7 @@ public class HomePage extends BasePage {
     private final GUIDriver driver;
     private HeaderComponent header;
     private FooterComponent footer;
-    private String category = "Electronics";
-    private String categoryOptionName = "Cell phones";
+
     /**
      * Featured products currently visible on home page:
      * 1. Build your own computer

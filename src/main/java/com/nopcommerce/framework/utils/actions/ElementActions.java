@@ -59,6 +59,26 @@ public class ElementActions {
                 });
     }
 
+    // hover action
+    public void hover(By by) {
+        waitManager.fluentWait()
+                .until(d -> {
+                    try {
+                        WebElement element = d.findElement(by);
+                        LogsManager.info("Scrolling to hover on element:", by.toString());
+                        scrollToElementJs(by);
+                        LogsManager.info("Hovering on element:", by.toString());
+                        new Actions(driver).moveToElement(element).perform();
+                        LogsManager.info("Hovered on element:", by.toString());
+                        return true;
+                    } catch (Exception e) {
+                        LogsManager.error("Failed to hover on element:", by.toString(), e.getMessage());
+                        return false;
+                    }
+                });
+
+    }
+
     public void clear(By by){
         waitManager.fluentWait()
                 .until(d->{
