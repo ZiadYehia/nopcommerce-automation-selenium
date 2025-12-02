@@ -65,6 +65,7 @@ public class ProductPage extends BasePage {
     }
 
 
+
     // validations
 
     @Step("Validate Product page is loaded")
