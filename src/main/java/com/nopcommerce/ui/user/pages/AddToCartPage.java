@@ -35,7 +35,6 @@ public class AddToCartPage extends BasePage {
         return By.xpath("(//div[@class=\"quantity down\"])["+index+"]");
     }
     private By itemsCountInCart = By.cssSelector("table[class=\"cart\"] tbody tr");
-
     private By giftWrapDropdown = By.cssSelector("//select[@id='checkout_attribute_1']");
     private By termsCheckbox = By.cssSelector("[id=\"termsofservice\"]");
     private By checkoutButton = By.cssSelector("[id=\"checkout\"]");
@@ -70,9 +69,9 @@ public class AddToCartPage extends BasePage {
     }
 
     @Step("Click on Checkout button")
-    public CheckoutPage clickCheckoutButton(){
+    public AddToCartPage clickCheckoutButton(){
         driver.element().click(checkoutButton);
-        return new CheckoutPage(driver);
+        return this;
     }
 
     @Step("Apply discount code {code}")
@@ -184,9 +183,11 @@ public class AddToCartPage extends BasePage {
     }
 
     @Step("Validate discount is applied correctly to total price")
-    public AddToCartPage isDiscountAppliedCorrectly(double expectedDiscountAmount){
+    public AddToCartPage isDiscountAppliedCorrectly(){
+        // get subtotal amount * 10%
+        double subtotal = Double.parseDouble(driver.element().getText(subtotalPrice).replace("$", ""));
         String actualDiscountAmount = driver.element().getText(dicountPrice).replace("$", "").replace("(","").replace(")","");
-        driver.verification().Equals(String.valueOf(actualDiscountAmount), String.valueOf(expectedDiscountAmount), "Discount amount is not correct");
+        driver.verification().Equals(String.valueOf(actualDiscountAmount), String.valueOf(subtotal*0.1), "Discount amount is not correct");
         return this;
 
     }

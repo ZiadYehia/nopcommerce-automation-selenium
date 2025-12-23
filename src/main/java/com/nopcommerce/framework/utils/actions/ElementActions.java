@@ -2,6 +2,7 @@ package com.nopcommerce.framework.utils.actions;
 
 import com.nopcommerce.framework.utils.WaitManager;
 import com.nopcommerce.framework.utils.logs.LogsManager;
+import groovy.util.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -144,6 +145,7 @@ public class ElementActions {
                         String propValue = element.getDomProperty(property);
                         if (!propValue.isEmpty()) {
                             LogsManager.info("Got DOM property from element:", by.toString());
+                            LogsManager.info("Property Value:", propValue);
                             return propValue;
                         } else {
                             LogsManager.warn("No DOM property found in element:", by.toString());
